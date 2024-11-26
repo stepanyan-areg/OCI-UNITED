@@ -1,0 +1,20 @@
+controller:
+  kind: Deployment
+  metrics:
+    enabled: true
+  serviceMonitor:
+    enabled: true
+  config:
+    allow-snippet-annotations: "true"
+    enable-real-ip: "true"
+    compute-full-forwarded-for: "true"
+    use-forwarded-headers: "true"
+    enable-underscores-in-headers: "true"
+    proxy-buffer-size: 32k
+    proxy-buffers-number: "8"
+  resources:
+    limits:
+      memory: 500Mi
+    requests:
+      cpu: 300m
+      memory: 500Mi  

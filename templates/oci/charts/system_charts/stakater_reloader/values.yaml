@@ -1,0 +1,7 @@
+%{ if has_dedicated_infra_nodes }
+tolerations:
+  - key: CriticalAddonsOnly
+    operator: Exists
+nodeSelector:
+  role: infra
+%{ endif }

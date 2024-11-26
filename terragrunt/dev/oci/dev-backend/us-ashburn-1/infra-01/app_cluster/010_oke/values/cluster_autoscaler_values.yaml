@@ -1,0 +1,16 @@
+cloudProvider: oci
+resources:
+  limits:
+    cpu: 500m
+    memory: 300Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+# extraArgs:
+#   v: "4"
+#   stderrthreshold: info
+#   skip-nodes-with-local-storage: "false"
+#   expander: least-waste
+#   balance-similar-node-groups: "true"
+#   skip-nodes-with-system-pods: "false"
+#   scan-interval: 10s

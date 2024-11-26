@@ -1,0 +1,9 @@
+fullnameOverride: ${release_name}
+serviceAccount:
+  create: true
+  name: ${sa_name}
+policy: sync
+%{ if has_dedicated_infra_nodes }
+tolerations:
+  - operator: Exists
+%{ endif }

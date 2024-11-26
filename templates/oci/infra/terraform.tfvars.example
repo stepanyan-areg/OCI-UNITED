@@ -1,0 +1,101 @@
+tenancy_ocid         = "ocid1.tenancy.oc1..aaaaaaaarjfplnumc6g52h4j3455uanqdvycungxybbxuastx2vw5jt27mdq"
+current_user_ocid    = "ocid1.user.oc1..aaaaaaaacixjo3mtjxcntqls4cn3onv4dpahflc456p7jhf3o2ikcksvv5iq"
+api_fingerprint      = "40:bb:4b:32:27:a2:10:a3:33:ba:31:d9:8a:96:4a:6f"
+# private_key_path     = "/Users/aregstepanyan/.oci/admin-user2.pem"
+api_private_key_path = "/Users/aregstepanyan/.oci/admin-user2.pem"
+compartment_id       = "ocid1.tenancy.oc1..aaaaaaaarjfplnumc6g52h4j3455uanqdvycungxybbxuastx2vw5jt27mdq"
+region               = "us-ashburn-1"
+control_plane_is_public = true
+vcn_cidrs            = ["10.0.0.0/16"]
+control_plane_allowed_cidrs = ["0.0.0.0/0"]
+# cluster_autoscaler_helm_values_files = ["./values/cluster_autoscaler_values.yaml"]
+metrics_server_helm_values_files = ["./values/metric_server_values.yaml"]
+
+
+# nsgs = {
+#   bastion = { create = "always" }
+#   workers = { create = "always" }
+#   cp      = { create = "always" }
+# }
+
+# worker_shape = {
+#   shape = "VM.Standard.E3.Flex"
+#   boot_volume_size = 50
+#   boot_volume_vpus_per_gb = 10
+#   memory = 16
+#   ocpus = 2
+# }
+
+
+ssh_private_key_path   = "/Users/aregstepanyan/.oci/oke_bastion_key"
+ssh_public_key_path    = "/Users/aregstepanyan/.oci/oke_bastion_key.pub"
+
+
+
+# Copyright 2017, 2023 Oracle Corporation and/or affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
+
+#bastion
+create_bastion              = true           # *true/false
+bastion_allowed_cidrs       = ["0.0.0.0/0"]  # e.g. ["0.0.0.0/0"] to allow traffic from all sources
+bastion_availability_domain = null           # Defaults to first available
+bastion_image_id            = null           # Ignored when bastion_image_type = "platform"
+bastion_image_os            = "Oracle Linux" # Ignored when bastion_image_type = "custom"
+bastion_image_os_version    = "8"            # Ignored when bastion_image_type = "custom"
+bastion_image_type          = "platform"     # platform/custom
+bastion_nsg_ids             = []             # Combined with created NSG when enabled in var.nsgs
+bastion_public_ip           = null           # Ignored when create_bastion = true
+# bastion_type                = "public"       # *public/private
+bastion_upgrade             = false          # true/*false
+bastion_user                = "opc"
+
+bastion_shape = {
+  shape            = "VM.Standard.E4.Flex",
+  ocpus            = 1,
+  memory           = 4,
+  boot_volume_size = 50
+}
+
+#cluster
+create_cluster                    = true // *true/false
+cluster_dns                       = null
+cluster_kms_key_id                = null
+cluster_name                      = "oke"
+cluster_type                      = "enhanced" // *basic/enhanced
+cni_type                          = "flannel"  // *flannel/npn
+assign_public_ip_to_control_plane = true // true/*false
+image_signing_keys                = []
+kubernetes_version                = "v1.30.1"
+pods_cidr                         = "10.244.0.0/16"
+services_cidr                     = "10.96.0.0/16"
+use_signed_images                 = false // true/*false
+#cluster autoscaler
+cluster_autoscaler_install           = true
+cluster_autoscaler_namespace         = "kube-system"
+cluster_autoscaler_helm_version      = "9.24.0"
+cluster_autoscaler_helm_values       = {}
+cluster_autoscaler_helm_values_files = []
+#metrics_server
+metrics_server_install       = true
+metrics_server_namespace     = "metrics"
+# metrics_server_daemonset_url = null // determined automatically for version by default
+# metrics_server_version       = "master"
+
+
+# Example worker pool configurations with cluster autoscaler
+worker_pools = {
+  np-autoscaled = {
+    description              = "Node pool managed by cluster autoscaler",
+    size                     = 2,
+    min_size                 = 1,
+    max_size                 = 3,
+    autoscale                = true,
+    ignore_initial_pool_size = true
+  },
+  np-autoscaler = {
+    description      = "Node pool with cluster autoscaler scheduling allowed",
+    size             = 1,
+    allow_autoscaler = true,
+  },
+}
