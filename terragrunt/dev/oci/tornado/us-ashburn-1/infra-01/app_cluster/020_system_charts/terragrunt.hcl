@@ -49,49 +49,11 @@ inputs = {
   worker_compartment_id  = local.compartment_id
   tenancy_ocid           = local.tenancy_ocid
   tenancy_id             = local.tenancy_ocid 
-  # cluster_name                                   = dependency.oke.outputs.cluster_name
-  # cluster_endpoint                             = dependency.eks.outputs.eks_endpoint
-  # vpc_id                                       = dependency.eks.outputs.vpc_id
-  # domain_name                                  = dependency.eks.outputs.r53_zone_name
-  # acm_certificate_arn                          = dependency.eks.outputs.acm_certificate_arn
-  # cluster_oidc_provider                        = dependency.eks.outputs.eks_oidc_provider
-
-  # has_dedicated_infra_nodes                    = dependency.eks.outputs.has_dedicated_infra_nodes
-
-
-  # # Karpenter Autoscaler
-  # karpenter_enabled                            = false
-  # karpenter_namespace                          = "karpenter"
 
   # Nginx Ingress Contorller
   ingress_nginx_enabled                       = true
   ingress_nginx_namespace                     = "nginx-ingress"
   ingress_nginx_chart_version                 = "4.11.2"
-  # # Kong
-  # kong_enabled                                 = false
-  # kong_namespace                               = "kong"
-
-  # # External DNS
-  # eks_external_dns_enabled                     = true
-  # external_dns_namespace                       = "external-dns"
-  # external_dns_domain_filter                   = dependency.eks.outputs.r53_zone_name
-
-  # # External Secrets
-  # external_secrets_enabled                     = true
-  # external_secrets_namespace                   = "external-secrets"
-
-  # # EBS CSI Driver
-  # ebs_csi_enabled                              = true
-  # ebs_csi_driver_namespace                     = "kube-system"
-
-  # Metrics Server
-  # metrics_server_enabled                       = true
-  # metrics_server_namespace                     = "kube-system"
-
-  # # Node Trmination Handler
-  # aws_node_termination_handler_enabled         = true
-  # aws_node_termination_handler_namespace       = "kube-system"
-
   #Cert-Manager
   cert_manager_enabled  = true  
   cert_manager_namespace = "cert-manager"
@@ -106,8 +68,5 @@ inputs = {
   keda_enabled                                 = true
   keda_namespace                               = "keda"
 
-  # #reloader
-  # reloader_enabled                             = true
-  # reloader_namespace                           = "reloader"
 }
 

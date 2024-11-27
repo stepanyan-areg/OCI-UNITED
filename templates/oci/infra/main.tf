@@ -1,30 +1,3 @@
-# terraform {
-#   required_providers {
-#     oci = {
-#       source  = "oracle/oci"
-#       version = ">= 4.0.0"
-#     }
-#   }
-# }
-
-# Default OCI provider configuration
-# provider "oci" {
-#   region            = var.region
-#   tenancy_ocid      = var.tenancy_ocid
-#   user_ocid         = var.user_ocid
-#   fingerprint       = var.fingerprint
-#   private_key_path  = var.private_key_path
-# }
-
-# # Additional OCI provider configuration with alias "home"
-# provider "oci" {
-#   alias             = "home"
-#   region            = var.region
-#   tenancy_ocid      = var.tenancy_ocid
-#   user_ocid         = var.user_ocid
-#   fingerprint       = var.fingerprint
-#   private_key_path  = var.private_key_path
-# }
 
 data "oci_containerengine_cluster_kube_config" "kubeconfig" {
   cluster_id = module.oke.cluster_id
