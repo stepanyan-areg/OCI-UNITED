@@ -132,44 +132,6 @@ inputs = {
     boot_volume_size = 50
   }
 
-  # Node Pools Configuration 
-  # worker_pools = {
-  #   np1 = {
-  #     shape            = "VM.Standard.E3.Flex",
-  #     ocpus            = 2,
-  #     memory           = 32,
-  #     size             = 3,
-  #     boot_volume_size = 150,
-  #     image_os         = "Oracle Linux",  
-  #     image_os_version = "8"      
-  #     autoscale              = true     
-  #     min_size                        = 1
-  #     max_size                        = 5          
-  #   }
-    # oke-vm-autoscaler = {
-    #   size = 1, // Do not scale out. Scale out below worker pool such as oke-vm-optimized.
-    #   description      = "Node pool with cluster autoscaler scheduling allowed",
-    #   allow_autoscaler = true,
-    #   shape = "VM.Standard3.Flex"
-    #   ocpus = 1,
-    #   memory = 4,
-    #   boot_volume_size = 50,
-    #   image_os         = "Oracle Linux",  
-    #   image_os_version = "8" 
-    #   autoscale              = true  
-    #   min_size                        = 1
-    #   max_size                        = 5          
-    # }    
-  # }
-
-  # worker_pool_size             = 3
-  # worker_pool_mode             = "node-pool"
-  # worker_shape                 = { shape = "VM.Standard.E3.Flex", ocpus = 2, memory = 16, boot_volume_size = 50 }
-  # worker_is_public             = false
-  # worker_nsg_ids               = []
-  # preferred_load_balancer      = "public"
-  # worker_preemptible_config    = { enable = false, is_preserve_boot_volume = false }
-
   # Worker Node Configuration
   worker_shape = {
     shape               = "VM.Standard.E4.Flex"
